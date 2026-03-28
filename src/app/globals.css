@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-base: #030014;
+  --blob-purple: rgba(76, 29, 149, 0.12);
+  --blob-violet: rgba(124, 58, 237, 0.14);
+  --blob-indigo: rgba(30, 27, 75, 0.08);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --violet: #8b5cf6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  color: var(--text);
+  background-color: var(--bg-base);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, var(--blob-purple) 0%, transparent 30%),
+    radial-gradient(circle at bottom right, var(--blob-violet) 0%, transparent 34%),
+    radial-gradient(circle at center, var(--blob-indigo) 0%, transparent 28%),
+    var(--bg-base);
+  background-attachment: scroll;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.heading-gradient {
+  @apply bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent;
+}
+
+.body-muted {
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-white/40 focus:border-violet-500/60 focus:bg-white/10;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-2xl border border-violet-500/30 bg-violet-500/20 px-5 py-3 text-sm font-medium text-white transition duration-300 hover:scale-[1.02] hover:bg-violet-500/30 active:scale-[0.99];
+  box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition duration-300 hover:scale-[1.02] hover:bg-white/10 active:scale-[0.99];
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.stats-mono {
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-number {
+  @apply text-5xl sm:text-6xl font-semibold;
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.12));
+}
+
+.window-bar {
+  @apply mb-4 flex items-center gap-2 border-b border-white/10 pb-3;
+}
+
+.window-dot {
+  @apply h-3 w-3 rounded-full;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.05) 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3.4s linear infinite;
+}
+
+.shimmer-cyan {
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.2) 20%,
+    rgba(103, 232, 249, 0.7) 50%,
+    rgba(34, 211, 238, 0.2) 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3.8s linear infinite;
+}
+
+.shimmer-violet {
+  background: linear-gradient(
+    90deg,
+    rgba(168, 85, 247, 0.16) 20%,
+    rgba(217, 70, 239, 0.55) 50%,
+    rgba(168, 85, 247, 0.16) 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4.2s linear infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 45% {
+    opacity: 1;
+  }
+  46%, 100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blinkCursor 1.2s step-end infinite;
 }
