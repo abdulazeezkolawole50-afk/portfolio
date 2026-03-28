@@ -142,7 +142,20 @@ export const certificates: Certificate[] = [
 ];
 
 export const socials = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/abdulazeez-kolawole-3244383ba?trk=contact-info" },
-  { name: "TikTok", href: "https://www.tiktok.com/@kolawoleabdulazeez4" },
-  { name: "Instagram", href: "https://www.instagram.com/kola_wole23/?__pwa=1#" },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/abdulazeez-kolawole-3244383ba?trk=contact-info",
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@kolawoleabdulazeez4",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/kola_wole23/?__pwa=1#",
+  },
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/2348109739729?text=Hello%20Abdulazeez,%20I%20saw%20your%20portfolio%20and%20I%20want%20to%20work%20with%20you",
+  },
 ];
